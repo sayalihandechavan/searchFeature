@@ -11,14 +11,17 @@ import { FormsModule } from '@angular/forms';
 export class Search {
   searchText = '';
   results: any[] = [];
-
+  isLoading = false; 
   constructor(private http: HttpClient) {}
 
   onSearch() {
     if(this.searchText) {
+      this.isLoading = true;
+      this.results = [];
       this.http.get(`https://jsonplaceholder.typicode.com/posts?q=${this.searchText}`)
        .subscribe((data: any) => {
           this.results = data;
+          this.isLoading = false;
         });
     }
   }

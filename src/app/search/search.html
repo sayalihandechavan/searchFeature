@@ -1,7 +1,13 @@
 <h2>Search Posts</h2>
 
 <input type="text" [(ngModel)]="searchText" placeholder="Search here...">
-<button (click)="onSearch()">Search</button>
+<button (click)="onSearch()" [disabled]="isLoading">Search</button>
+
+@if (isLoading) {
+  <div>
+    <p>Loading...</p>
+  </div>
+}
 
 @for (post of results; track post.id) {
   <div>
