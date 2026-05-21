@@ -1,1 +1,18 @@
-<p>search works!</p>
+<h2>Search Posts</h2>
+
+<input type="text" [(ngModel)]="searchText" placeholder="Search here...">
+<button (click)="onSearch()">Search</button>
+
+@for (post of results; track post.id) {
+  <div>
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.body }}</p>
+    <hr>
+  </div>
+}
+
+@if (results.length === 0 && searchText) {
+  <div>
+    <p>No results found</p>
+  </div>
+}
